@@ -1,0 +1,96 @@
+{
+  "dataset": "silver.orders_clean",
+  "version": "1.2.0",
+  "owner": "data-platform@example.invalid",
+  "tier": 1,
+  "description": "Synthetic order events used to demonstrate executable data contracts.",
+  "synthetic": true,
+  "schema": [
+    {
+      "name": "order_id",
+      "type": "string",
+      "nullable": false,
+      "description": "Synthetic business key."
+    },
+    {
+      "name": "customer_id",
+      "type": "string",
+      "nullable": false,
+      "description": "Synthetic customer identifier."
+    },
+    {
+      "name": "event_timestamp",
+      "type": "datetime",
+      "nullable": false,
+      "description": "UTC event timestamp."
+    },
+    {
+      "name": "amount_usd",
+      "type": "number",
+      "nullable": false,
+      "description": "Illustrative order amount in USD."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "nullable": false,
+      "description": "Lifecycle state for the synthetic order."
+    },
+    {
+      "name": "source_region",
+      "type": "string",
+      "nullable": false,
+      "description": "Illustrative source partition."
+    }
+  ],
+  "checks": {
+    "freshness": {
+      "timestamp_column": "event_timestamp",
+      "max_age_minutes": 120,
+      "max_future_skew_minutes": 5,
+      "severity": "critical"
+    },
+    "volume": {
+      "min_rows": 5,
+      "max_rows": 1000000,
+      "severity": "critical"
+    },
+    "uniqueness": [
+      "order_id"
+    ],
+    "distribution": [
+      {
+        "id": "distribution.status.domain",
+        "kind": "allowed_values",
+        "column": "status",
+        "values": [
+          "created",
+          "paid",
+          "shipped",
+          "cancelled"
+        ],
+        "max_violation_rate": 0,
+        "severity": "critical"
+      },
+      {
+        "id": "distribution.amount_usd.range",
+        "kind": "range",
+        "column": "amount_usd",
+        "min": 0,
+        "max": 10000,
+        "max_violation_rate": 0,
+        "severity": "critical"
+      },
+      {
+        "id": "distribution.customer_id.null_rate",
+        "kind": "null_rate",
+        "column": "customer_id",
+        "max_rate": 0,
+        "severity": "warning"
+      }
+    ]
+  },
+  "slo": {
+    "target_percent": 99
+  }
+}
