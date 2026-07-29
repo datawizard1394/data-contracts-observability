@@ -1,0 +1,35 @@
+{
+  "affected_dimensions": [
+    "distribution",
+    "freshness",
+    "schema",
+    "uniqueness",
+    "volume"
+  ],
+  "dataset": "silver.orders_clean",
+  "evaluation_score_percent": 65.79,
+  "failed_checks": [
+    "schema.customer_id.nullability",
+    "volume.row_count",
+    "freshness.latest_record",
+    "uniqueness.order_id",
+    "distribution.status.domain",
+    "distribution.amount_usd.range"
+  ],
+  "generated_at": "2026-07-28T12:00:00+00:00",
+  "recommended_actions": [
+    "Profile affected rows and confirm whether the shift is expected.",
+    "Check the ingestion schedule, source availability, and last good run.",
+    "Quarantine the batch and compare producer schema with the contract.",
+    "Identify replayed keys and verify merge/idempotency logic.",
+    "Compare source counts and inspect upstream filters or partial extracts."
+  ],
+  "severity": "SEV-1",
+  "slo_note": "The score is a point-in-time contract evaluation, not historical production availability.",
+  "slo_target_percent": 99.0,
+  "state": "BREACHED",
+  "synthetic_demo": true,
+  "warning_checks": [
+    "distribution.customer_id.null_rate"
+  ]
+}

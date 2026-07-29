@@ -1,0 +1,14 @@
+{
+  "affected_dimensions": [],
+  "dataset": "silver.orders_clean",
+  "evaluation_score_percent": 100.0,
+  "failed_checks": [],
+  "generated_at": "2026-07-28T12:00:00+00:00",
+  "recommended_actions": [],
+  "severity": "NONE",
+  "slo_note": "The score is a point-in-time contract evaluation, not historical production availability.",
+  "slo_target_percent": 99.0,
+  "state": "HEALTHY",
+  "synthetic_demo": true,
+  "warning_checks": []
+}
