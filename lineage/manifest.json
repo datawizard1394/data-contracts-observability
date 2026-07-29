@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "synthetic": true,
+  "description": "Illustrative lineage for the synthetic orders domain.",
+  "assets": [
+    {
+      "name": "source.commerce.orders",
+      "type": "source",
+      "platform": "synthetic-commerce-api",
+      "owner": "source-systems@example.invalid",
+      "upstream": []
+    },
+    {
+      "name": "bronze.orders_ingest",
+      "type": "table",
+      "platform": "object-storage",
+      "owner": "data-platform@example.invalid",
+      "upstream": [
+        "source.commerce.orders"
+      ]
+    },
+    {
+      "name": "silver.orders_clean",
+      "type": "table",
+      "platform": "lakehouse",
+      "owner": "data-platform@example.invalid",
+      "upstream": [
+        "bronze.orders_ingest"
+      ]
+    },
+    {
+      "name": "gold.order_metrics",
+      "type": "view",
+      "platform": "warehouse",
+      "owner": "analytics@example.invalid",
+      "upstream": [
+        "silver.orders_clean"
+      ]
+    },
+    {
+      "name": "dashboard.order_operations",
+      "type": "dashboard",
+      "platform": "synthetic-bi",
+      "owner": "operations@example.invalid",
+      "upstream": [
+        "gold.order_metrics"
+      ]
+    }
+  ]
+}
