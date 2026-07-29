@@ -1,0 +1,9 @@
+order_id,customer_id,event_timestamp,amount_usd,status,source_region
+ord-1001,cus-201,2026-07-28T11:05:00Z,79.95,paid,ca-central
+ord-1002,cus-202,2026-07-28T11:12:00Z,149.50,created,ca-central
+ord-1003,cus-203,2026-07-28T11:18:00Z,22.00,shipped,us-east
+ord-1004,cus-204,2026-07-28T11:25:00Z,310.40,paid,us-east
+ord-1005,cus-205,2026-07-28T11:31:00Z,9.99,cancelled,eu-west
+ord-1006,cus-206,2026-07-28T11:37:00Z,64.25,shipped,ca-central
+ord-1007,cus-207,2026-07-28T11:42:00Z,1280.00,paid,us-east
+ord-1008,cus-208,2026-07-28T11:45:00Z,18.75,created,eu-west
